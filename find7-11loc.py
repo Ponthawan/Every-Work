@@ -38,9 +38,9 @@ G.add_edges_from([
     ])
 
 
-pos = {'KMUTNB Prachinburi':(1,9),'Kabin Buri':(0,11.5),'Nadee':(10,7.6),'Ban Sang':(0.8,0.9),'Prachantakham':(6.5,9.2),'Sri Maha Phot':(7.4,3.5),'Sri Mahosot':(4,1.5)
-       ,'7-11 Noen Hom':(2.1,8),'7-11 Naresuan':(2.65,7.35),'7-11 Phrom Yothi':(4.5,6.5),'7-11 Mai Khet':(2.3,5.6),'7-11 Mueng':(2.3,3.9),'7-11 Nha Mueng':(2.88,3.9),'7-11 Ban Sang':(2,1.3)
-       ,'7-11 Sri Mahosot':(4,1.6),'7-11 Sri Maha Phot':(7,5.2),'7-11 Khok kwang':(5,1.3),'7-11 Nikom 304':(10,3.56),'7-11 Kabin':(9.2,1.7),'7-11 Nadee':(9.6,6.2), '7-11 Prachantakham':(7.4,7.9)}
+pos = {'KMUTNB Prachinburi':(1.8,10.4),'Kabin Buri':(9.2,0.5),'Nadee':(11.2,8),'Ban Sang':(1.6,1.4),'Prachantakham':(7.5,11.5),'Sri Maha Phot':(8.9,5),'Sri Mahosot':(4.6,2.5)
+       ,'7-11 Noen Hom':(2.6,8.7),'7-11 Naresuan':(3.2,7.9),'7-11 Phrom Yothi':(4.6,6.9),'7-11 Mai Khet':(2.5,6.6),'7-11 Mueng':(2.8,4.7),'7-11 Nha Mueng':(5.3,5.9),'7-11 Ban Sang':(2,3.3)
+       ,'7-11 Sri Mahosot':(5.2,3.6),'7-11 Sri Maha Phot':(7.2,7),'7-11 Khok kwang':(7,3),'7-11 Nikom 304':(10.2,4),'7-11 Kabin':(9.4,2.9),'7-11 Nadee':(8.6,8), '7-11 Prachantakham':(7.4,8.9)}
 
 
 
@@ -64,13 +64,13 @@ def search_nodes():
     node_color_map = []
     for node in G.nodes():
         if node == shortest_path[0]:
-            node_color_map.append('green')
-        elif node == shortest_path[-1]:
-            node_color_map.append('red')
-        elif node in shortest_path:
             node_color_map.append('orange')
+        elif node == shortest_path[-1]:
+            node_color_map.append('orange')
+        elif node in shortest_path:
+            node_color_map.append('yellow')
         else:
-            node_color_map.append('gray')
+            node_color_map.append('purple')
 
     plt.figure(figsize=(12,8))
     nx.draw_networkx(G, pos, with_labels=True, node_color=node_color_map, node_size=1000)
@@ -82,7 +82,7 @@ def search_nodes():
 
 
 root = tk.Tk()
-root.title("University Distance")
+root.title("Find 7-11 Shortest Location")
 
 canvas = tk.Canvas(root, width=800, height=500)
 canvas.pack()
