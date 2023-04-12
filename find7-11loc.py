@@ -77,7 +77,7 @@ def search_nodes():
     edge_labels = nx.get_edge_attributes(G, 'distance')
     nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
     edge_list = list(zip(shortest_path, shortest_path[1:]))
-    plt.title("Distance of University", size=12)
+    plt.title("Find 7-11 Shortest Location", size=12)
     plt.show()
 
 
@@ -87,25 +87,25 @@ root.title("Find 7-11 Shortest Location")
 canvas = tk.Canvas(root, width=800, height=500)
 canvas.pack()
 
-photo = tk.PhotoImage(file="University.png")
-canvas.create_image(400, 300, image=photo)
+photo = tk.PhotoImage(file="location.png")
+canvas.create_image(600, 400, image=photo)
 
 frame = tk.Frame(root)
 frame.pack(side=tk.BOTTOM)
 
-source_label = tk.Label(frame, text="Enter beginning from: ")
+source_label = tk.Label(frame, text="Where do you want to start: ")
 source_label.grid(row=0, column=0)
 
 source_entry = tk.Entry(frame)
 source_entry.grid(row=0, column=1)
 
-dest_label = tk.Label(frame, text="Enter destination: ")
+dest_label = tk.Label(frame, text="Where do you want to end: ")
 dest_label.grid(row=1, column=0)
 
 dest_entry = tk.Entry(frame)
 dest_entry.grid(row=1, column=1)
 
-search_button = tk.Button(frame, text="Find shortest path", command=search_nodes)
+search_button = tk.Button(frame, text="Lets go to find!", command=search_nodes)
 search_button.grid(row=2, column=1)
 
 path_label = tk.Label(frame, text="")
