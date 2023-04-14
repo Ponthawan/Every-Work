@@ -1,5 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+
 import tkinter as tk
 
 G = nx.Graph()
@@ -52,14 +53,14 @@ def search_nodes():
                     ,'7-11 Sri Mahosot','7-11 Sri Maha Phot','7-11 Khok kwang','7-11 Nikom 304','7-11 Kabin','7-11 Nadee']
     source = source_entry.get()
     while source not in valid_nodes:
-        source = input(f"{source} is not a valid node. Please enter a valid source node: ")
-    dest = dest_entry.get()
-    while dest not in valid_nodes:
-        dest = input(f"{dest} is not a valid node. Please enter a valid destination node: ")
-    shortest_path = nx.shortest_path(G, source=source, target=dest, weight='distance')
-    shortest_path_length = nx.shortest_path_length(G, source=source, target=dest, weight='distance')
+        source = input(f"{source} is not a valid node. Please try again: ")
+    destination = destination_entry.get()
+    while destination not in valid_nodes:
+        destination = input(f"{destination} is not a valid node. Please try again: ")
+    shortest_path = nx.shortest_path(G, source=source, target=destination, weight='distance')
+    shortest_path_length = nx.shortest_path_length(G, source=source, target=destination, weight='distance')
     shortest_path_length = ("%.2f"%(shortest_path_length))
-    path_label.config(text=f"Shortest path from {source} to {dest}: {shortest_path}\nShortest path length: {shortest_path_length} km")
+    path_label.config(text=f"The nearest ways from {source} to {destination}: {shortest_path}\nShortest path length: {shortest_path_length} km.")
     
     node_color_map = []
     for node in G.nodes():
@@ -84,11 +85,13 @@ def search_nodes():
 root = tk.Tk()
 root.title("Find 7-11 Shortest Location")
 
-canvas = tk.Canvas(root, width=800, height=500)
+root.config(bg="pink")
+
+canvas = tk.Canvas(root, width=800, height=400)
 canvas.pack()
 
-photo = tk.PhotoImage(file="location.png")
-canvas.create_image(600, 400, image=photo)
+photo = tk.PhotoImage(file="Locationnn.png")
+canvas.create_image(400, 200, image=photo)
 
 frame = tk.Frame(root)
 frame.pack(side=tk.BOTTOM)
@@ -99,14 +102,15 @@ source_label.grid(row=0, column=0)
 source_entry = tk.Entry(frame)
 source_entry.grid(row=0, column=1)
 
-dest_label = tk.Label(frame, text="Where do you want to end: ")
-dest_label.grid(row=1, column=0)
+destination_label = tk.Label(frame, text="Where do you want to end: ")
+destination_label.grid(row=1, column=0)
 
-dest_entry = tk.Entry(frame)
-dest_entry.grid(row=1, column=1)
+destination_entry = tk.Entry(frame)
+destination_entry.grid(row=1, column=1)
 
-search_button = tk.Button(frame, text="Lets go to find!", command=search_nodes)
-search_button.grid(row=2, column=1)
+button = tk.Button(frame, text="Let's go to find!", command=search_nodes)
+button.grid(row=2, column=1)
+button.configure(bg="pink")
 
 path_label = tk.Label(frame, text="")
 path_label.grid(row=3, column=0, columnspan=2)
